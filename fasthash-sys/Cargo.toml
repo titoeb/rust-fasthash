@@ -3,12 +3,10 @@ authors = ["Flier Lu <flier.lu@gmail.com>"]
 build = "build.rs"
 description = "A suite of non-cryptographic hash functions for Rust."
 edition = "2018"
-homepage = "https://github.com/flier/rust-fasthash"
 keywords = ["hash", "hashing"]
 license = "Apache-2.0"
-name = "fasthash-sys"
-repository = "https://github.com/flier/rust-fasthash.git"
-version = "0.4.1"
+name = "fasthash-sys-fork"
+version = "0.4.2"
 
 [features]
 default = ["native", "all"]

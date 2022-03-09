@@ -1,13 +1,10 @@
 [package]
 authors = ["Flier Lu <flier.lu@gmail.com>"]
-description = "A suite of non-cryptographic hash functions for Rust."
-documentation = "https://flier.github.io/rust-fasthash/"
+description = "A suite of non-cryptographic hash functions for Rust - Forked to release current code-base."
 edition = "2018"
-homepage = "https://github.com/flier/rust-fasthash"
 keywords = ["hash", "hashing"]
 license = "Apache-2.0"
-name = "fasthash"
-repository = "https://github.com/flier/rust-fasthash.git"
+name = "fasthash-fork"
 version = "0.4.1"
 
 [features]

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 set -e
 pushd ~
 
@@ -23,11 +25,10 @@ function llvm_download() {
     export LLVM_VERSION_TRIPLE=`llvm_version_triple ${LLVM_VERSION}`
     export LLVM=clang+llvm-${LLVM_VERSION_TRIPLE}-x86_64-$1
 
-    wget http://llvm.org/releases/${LLVM_VERSION_TRIPLE}/${LLVM}.tar.xz
-    mkdir llvm
-    tar -xf ${LLVM}.tar.xz -C llvm --strip-components=1
-
-    export LLVM_CONFIG_PATH=`pwd`/llvm/bin/llvm-config
+    wget -O /root/clang_llvm http://llvm.org/releases/${LLVM_VERSION_TRIPLE}/${LLVM}.tar.xz
+    mkdir /root/llvm
+    tar -xf /root/clang_llvm -C /root/llvm --strip-components=1
+    export LLVM_CONFIG_PATH=root/llvm/bin/llvm-config
 }
 
 llvm_download linux-gnu-ubuntu-16.04

@@ -1,0 +1,63 @@
+on:
+  push:
+    branches:
+      - master
+name: Release Crate.
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Git Repository.
+        uses: actions/checkout@v1
+        with:
+          submodules: true
+
+      - name: Get current Rust toolchain.
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: login to dockerhub.
+        run: echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username ${{ secrets.DOCKERHUB_USERNAME}} --password-stdin
+
+      - name: Pull latest image for caching.
+        run: docker pull titoeb/rust-fashhash:latest || exit 0
+
+      - name: Build container to to run release and tests in.
+        run: docker build -t titoeb/rust-fashhash:latest --cache-from titoeb/rust-fashhash:latest -f Docker/build.Dockerfile .
+
+      - name: Push container.
+        run: docker push titoeb/rust-fashhash:latest
+
+      - name: Run tests.
+        run: docker run titoeb/rust-fashhash:latest cargo test
+
+      - name: Extract Version number.
+        run: head -n 3 Cargo.toml  | tail -n 1 | cut -c 12- | rev | cut -c 2- | rev > version.txt
+
+      - name: Read in Version number.
+        id: version_number
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./version.txt
+
+      - name: Remove version file.
+        run: rm version.txt
+
+      - name: Publish release to crates.io.
+        run: docker run titoeb/rust-fashhash:latest  cargo publish --token ${{ secrets.CRATES_IO_TOKEN }}
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ steps.version_number.outputs.content }}
+          release_name: release-${{steps.version_number.outputs.content}}
+          body: "Released version: ${{steps.version_number.outputs.content}}."
+          draft: false
+          prerelease: false
