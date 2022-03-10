@@ -48,7 +48,7 @@ jobs:
         run: rm version.txt
 
       - name: Publish release to crates.io.
-        run: docker run titoeb/rust-fashhash:latest  cargo publish --token ${{ secrets.CRATES_IO_TOKEN }}
+        run: docker run titoeb/rust-fashhash:latest  cargo publish --token ${{ secrets.CRATES_IO_TOKEN }} --package fasthash-fork
 
       - name: Create Release
         id: create_release

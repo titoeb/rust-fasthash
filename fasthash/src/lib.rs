@@ -56,7 +56,7 @@
 
 #[macro_use]
 extern crate cfg_if;
-extern crate fasthash_sys as ffi;
+extern crate fasthash_sys_fork as ffi;
 
 cfg_if! {
     if #[cfg(feature = "digest")] {

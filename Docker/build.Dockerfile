@@ -43,12 +43,12 @@ ENV CC=gcc-6 \
     RUSTFLAGS="-C target-cpu=native"
 
 WORKDIR /rust-fasthash
-COPY Cargo.toml /rust-fasthash/
-COPY fasthash /rust-fasthash
-COPY fasthash-sys /rust-fasthash
 COPY .travis/before_install.sh /rust-fasthash/.travis/
-
 RUN .travis/before_install.sh llvm 
+
+COPY Cargo.toml /rust-fasthash/
+COPY fasthash /rust-fasthash/fasthash
+COPY fasthash-sys /rust-fasthash/fasthash-sys-fork
 
 ENV LLVM_CONFIG_PATH=root/llvm/bin/llvm-config
 

@@ -11,17 +11,17 @@ version = "0.4.1"
 default = ["doc", "native", "all"]
 
 doc = []
-gen = ["fasthash-sys/gen"]
+gen = ["fasthash-sys-fork/gen"]
 
-aes = ["fasthash-sys/aes"]
-avx = ["fasthash-sys/avx"]
-avx2 = ["fasthash-sys/avx2"]
-native = ["fasthash-sys/native"]
-sse41 = ["fasthash-sys/sse41"]
-sse42 = ["fasthash-sys/sse42"]
+aes = ["fasthash-sys-fork/aes"]
+avx = ["fasthash-sys-fork/avx"]
+avx2 = ["fasthash-sys-fork/avx2"]
+native = ["fasthash-sys-fork/native"]
+sse41 = ["fasthash-sys-fork/sse41"]
+sse42 = ["fasthash-sys-fork/sse42"]
 
 all = [
-  "fasthash-sys/all",
+  "fasthash-sys-fork/all",
   "ahash",
   "city",
   "farm",
@@ -37,18 +37,18 @@ all = [
   "wy",
   "xx",
 ]
-city = ["fasthash-sys/city"]
-farm = ["fasthash-sys/farm"]
-highway = ["fasthash-sys/highway"]
-lookup3 = ["fasthash-sys/lookup3"]
-meow = ["fasthash-sys/meow"]
-metro = ["fasthash-sys/metro"]
-mum = ["fasthash-sys/mum"]
-murmur = ["fasthash-sys/murmur"]
-spooky = ["fasthash-sys/spooky"]
-t1ha = ["fasthash-sys/t1ha"]
-wy = ["fasthash-sys/wy"]
-xx = ["fasthash-sys/xx"]
+city = ["fasthash-sys-fork/city"]
+farm = ["fasthash-sys-fork/farm"]
+highway = ["fasthash-sys-fork/highway"]
+lookup3 = ["fasthash-sys-fork/lookup3"]
+meow = ["fasthash-sys-fork/meow"]
+metro = ["fasthash-sys-fork/metro"]
+mum = ["fasthash-sys-fork/mum"]
+murmur = ["fasthash-sys-fork/murmur"]
+spooky = ["fasthash-sys-fork/spooky"]
+t1ha = ["fasthash-sys-fork/t1ha"]
+wy = ["fasthash-sys-fork/wy"]
+xx = ["fasthash-sys-fork/xx"]
 
 [dependencies]
 cfg-if = "1.0"
@@ -62,10 +62,10 @@ digest = {version = "0.9", optional = true}
 seahash = {version = "4.1", optional = true}
 xoroshiro128 = {version = "0.5", features = ["rand"]}
 
-[dependencies.fasthash-sys]
+[dependencies.fasthash-sys-fork]
 default-features = false
-path = "../fasthash-sys"
-version = "0.4"
+path = "../fasthash-sys-fork"
+version = "0.4.2"
 
 [dev-dependencies]
 criterion = "0.3"

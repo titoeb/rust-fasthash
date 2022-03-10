@@ -1,2 +1,2 @@
 [workspace]
-members = ["fasthash", "fasthash-sys"]
+members = ["fasthash", "fasthash-sys-fork"]
